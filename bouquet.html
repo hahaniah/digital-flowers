@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>make a bouquet — digital flowers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="builder-page">
+
+  <a href="index.html" class="back-link">← back</a>
+
+  <div class="builder">
+    <section class="step">
+      <h2>pick your flowers</h2>
+      <p class="step-hint">tap to add, tap again to remove</p>
+<div class="flower-picker">
+
+  <div class="flower-card" data-flower="daisy">
+    <button class="flower-opt" data-flower="daisy">
+      <img src="daisy.png.png" alt="daisy" />
+      <span>daisy</span>
+    </button>
+    <div class="flower-controls" hidden>
+      <button class="minus-btn" data-flower="daisy">-</button>
+      <span class="flower-count" data-flower="daisy">1</span>
+      <button class="plus-btn" data-flower="daisy">+</button>
+    </div>
+  </div>
+
+  <div class="flower-card" data-flower="sunflower">
+    <button class="flower-opt" data-flower="sunflower">
+      <img src="sunflower.png.png" alt="sunflower" />
+      <span>sunflower</span>
+    </button>
+    <div class="flower-controls" hidden>
+      <button class="minus-btn" data-flower="sunflower">-</button>
+      <span class="flower-count" data-flower="sunflower">1</span>
+      <button class="plus-btn" data-flower="sunflower">+</button>
+    </div>
+  </div>
+
+  <div class="flower-card" data-flower="rose">
+    <button class="flower-opt" data-flower="rose">
+      <img src="rose.png.png" alt="rose" />
+      <span>rose</span>
+    </button>
+    <div class="flower-controls" hidden>
+      <button class="minus-btn" data-flower="rose">-</button>
+      <span class="flower-count" data-flower="rose">1</span>
+      <button class="plus-btn" data-flower="rose">+</button>
+    </div>
+  </div>
+
+  <div class="flower-card" data-flower="lily">
+    <button class="flower-opt" data-flower="lily">
+      <img src="lily.png.png" alt="lily" />
+      <span>lily</span>
+    </button>
+    <div class="flower-controls" hidden>
+      <button class="minus-btn" data-flower="lily">-</button>
+      <span class="flower-count" data-flower="lily">1</span>
+      <button class="plus-btn" data-flower="lily">+</button>
+    </div>
+  </div>
+</div>
+    <div class="bouquet-preview" id="preview">
+      <p class="preview-empty" id="empty-msg">your bouquet will appear here </p>
+    </div>
+
+    <section class="step">
+      <h2>write a note</h2>
+
+      <div class="field">
+        <label for="to">to</label>
+        <input type="text" id="to" placeholder="who's this for?" maxlength="40"/>
+      </div>
+      <div class="field">
+        <label for="from">from</label>
+        <input type="text" id="from" placeholder="your name" maxlength="40"/>
+      </div>
+      <div class="field">
+        <label for="msg">message</label>
+        <textarea id="msg" placeholder="say something nice..." maxlength="300" rows="4"></textarea>
+      </div>
+    </section>
+
+    <section class="step">
+      <button class="btn" id="generate-btn">generate link 🔗</button>
+
+      <div class="link-box" id="link-box" hidden>
+        <p class="link-label">your bouquet link</p>
+        <div class="link-row">
+          <input type="text" id="link-output" readonly/>
+          <button class="copy-btn" id="copy-btn">copy</button>
+        </div>
+        <p class="copied-msg" id="copied-msg">copied! 🌸</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="bouquet.js"></script>
+</body>
+</html>
