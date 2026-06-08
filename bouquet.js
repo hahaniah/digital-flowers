@@ -35,9 +35,8 @@ document.querySelectorAll('.flower-opt').forEach(function(btn) {
 });
 
 function updatePreview() {
-  previewEl.querySelectorAll('.preview-flower').forEach(function(el) {
-    el.remove();
-  });
+  var layer = document.getElementById('flowers-layer');
+  if (layer) layer.remove();
 
   var total = 0;
   for (var f in picked) total += picked[f];
@@ -49,15 +48,35 @@ function updatePreview() {
 
   emptyMsg.style.display = 'none';
 
+  var container = document.createElement('div');
+  container.className = 'flowers-layer';
+  container.id = 'flowers-layer';
+
+  var allFlowers = [];
   for (var flower in picked) {
     for (var i = 0; i < picked[flower]; i++) {
-      var img = document.createElement('img');
-      img.className = 'preview-flower';
-      img.src = './' + flower + '.png.png';
-      img.alt = flower;
-      previewEl.appendChild(img);
+      allFlowers.push(flower);
     }
   }
+
+  var count = allFlowers.length;
+  for (var j = 0; j < count; j++) {
+    var img = document.createElement('img');
+    img.className = 'preview-flower';
+    img.src = './' + allFlowers[j] + '.png.png';
+    img.alt = allFlowers[j];
+
+    var spread = count === 1 ? 0 : (j / (count - 1) - 0.5);
+    var left = 85 + spread * 140;
+    var top = 40 - Math.abs(spread) * 40;
+
+    img.style.left = left + 'px';
+    img.style.top = top + 'px';
+
+    container.appendChild(img);
+  }
+
+  previewEl.appendChild(container);
 }
 
 document.getElementById('generate-btn').addEventListener('click', function() {
