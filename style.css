@@ -312,17 +312,17 @@ opacity 1;
 }
 .flowers-layer {
     position: absolute;
-    bottom: 80px;
+    bottom: 70px;
     left: 50%;
     transform: translateX(-50%);
-    width: 240px;
-    height: 160px;
+    width: 260px;
+    height: 180px;
     z-index: 1;
 }
-.flowers-layer .preview-flower {
+ .preview-flower {
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
     object-fit: contain;
     animation: pop 0.2s ease;
 }
