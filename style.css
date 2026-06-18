@@ -211,15 +211,16 @@ body.builder-page {
 }
 .field input,
 .field textarea {
-    font-family: 'Inter, sanserif';
+    font-family: 'Inter', sanserif;
     font-size: 0.95rem;
-    color: var(--white);
+    color: var(--deep);
     border: 1.5px solid var(--blush);
     border-radius: 10px;
     padding: 0.7rem 0.9rem;
     outline: none;
     resize: none;
     transition: border-color 0.15s;
+    background: var(--cream);
 }
 .field input:focus,
 .field textarea:focus {
@@ -326,4 +327,40 @@ opacity 1;
     object-fit: contain;
     animation: pop 0.2s ease;
 }
+body.view-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1 rem;
+    gap: 2rem;
+}
+.view-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(191, 91, 109, 0.12);
+}
 
+.view-to {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+}
+.view-msg {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin: 1.5rem 9;
+    white-space: pre-wrap;
+}
+.view-from {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+}

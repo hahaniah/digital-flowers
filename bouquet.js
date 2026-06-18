@@ -120,36 +120,6 @@ function updatePreview() {
   previewEl.appendChild(container);
 }
 
-  //fixing ts to make the flowers look like a bnuch
-  var spots= [
-    {left: 95, top: 25, rot:-6},
-    { left: 135, top: 18,  rot: 5   },
-    { left: 65,  top: 45,  rot: -14 },
-    { left: 165, top: 45,  rot: 12  },
-    { left: 105, top: 0,   rot: 2   },
-    { left: 35,  top: 75,  rot: -20 },
-    { left: 195, top: 75,  rot: 18  },
-    { left: 80,  top: 70,  rot: -8  },
-    { left: 145, top: 70,  rot: 9   },
-    { left: 15,  top: 100, rot: -26 },
-    { left: 205, top: 100, rot: 24  },
-    { left: 115, top: 60,  rot: 0   }
-  ];
-  var count= allFlowers.length;
-  for (var j=0; j <count; j++) {
-    var img=document.createElement('img');
-    img.className= 'prewview-flower';
-    img.src = './.' + allFlowers [j] + '.png.png';
-  img.alt=allFlowers[j];
-  var spot=spots[j%spots.length];
-var extra=Math.floor(j/spots.length) *8;
-img.style.left= (spot.left+extra)+'px';
-img.style.top= (spot.top-extra)+'px';
-img.style.transform = 'rotate(' + spot.rot + 'deg)';
-img.style.zIndex = j;
-
-container.appendChild(img);
-}
 
 document.getElementById('generate-btn').addEventListener('click', function() {
   var to = document.getElementById('to').value.trim();
