@@ -138,7 +138,7 @@ document.getElementById('generate-btn').addEventListener('click', function() {
   }
 
   var params = new URLSearchParams({ to: to, from: from, msg: msg, flowers: flowers });
-  var link = location.origin + '/view.html?' + params.toString();
+  var link = location.origin + '/digital-flowers/view.html?' + params.toString();
 
   var linkBox = document.getElementById('link-box');
   var linkOutput = document.getElementById('link-output');
