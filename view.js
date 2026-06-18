@@ -6,12 +6,12 @@ var flowersParam = params.get('flowers');
 
 var toEl=document.getElementById('view-to');
 var msgEl= document.getElementById('view-msg');
-var fromEl=document.getElementById(view-from);
+var fromEl=document.getElementById('view-from');
 toEl.textContent = to ? 'for ' + to : 'for you';
 msgEl.textContent = msg || '';
 fromEl.textContent = from ? '— ' + from : '';
 
-var picked = {;
+var picked = {};
 if (flowersParam) {
     var parts= flowersParam.split(',');
     //thas a cayoot face
@@ -22,7 +22,7 @@ if (flowersParam) {
     }
 }
 }
-}
+
 function shuffle(arr) {
   for (var i = arr.length - 1; i > 0; i--) {
     var r = Math.floor(Math.random() * (i + 1));
