@@ -11,7 +11,7 @@ toEl.textContent = to ? 'for ' + to : 'for you';
 msgEl.textContent = msg || '';
 fromEl.textContent = from ? '— ' + from : '';
 
-var picked{};
+var picked = {};
 if (flowersParam) {
     var parts= flowersParam.split(',');
     //thas a cayoot face
