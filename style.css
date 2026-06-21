@@ -136,6 +136,7 @@ body.builder-page {
 }
 .step {
     margin-bottom: 2.4rem;
+    margin-top: 1rem;
 }
 .step h2{
     font-family: 'Lora', serif;
@@ -180,19 +181,13 @@ body.builder-page {
     border-radius: 18px;
     min-height: 100px;
     padding: 1.2rem;
+    margin-top: 2rem;
     margin-bottom: 2.4rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
     align-items: center;
     justify-content: center;
-}
-.preview-empty {
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-align: center;
-    width: 100%;
-    display: block;
 }
 .preview-flower {
     font-size: 2rem;
@@ -301,6 +296,17 @@ opacity 1;
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 1rem;
+}
+.preview-empty{
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  width: 100%;
+  display: block;
+  top: 1rem;
+  left: 0;
+  z-index: 2;
+   
 }
 .greens {
     position: absolute;

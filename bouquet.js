@@ -14,35 +14,37 @@ const emptyMsg = document.getElementById('empty-msg');
 document.querySelectorAll('.flower-opt').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var flower = btn.dataset.flower;
-    if (picked[flower]) return;
-    if (totalFlowers() >= MAX_FLOWERS) return;
-    picked[flower] = 1;
-    btn.classList.add('selected');
-    var card = btn.closest('.flower-card');
-    card.querySelector('.flower-controls').hidden = false;
-    card.querySelector('.flower-count').textContent = 1;
+
+    if (totalFlowers() >= MAX_FLOWERS) {
+      alert('you can only add up to ' + MAX_FLOWERS + ' flowers in one bouquet 🌸');
+      return;
+    }
+    if (picked[flower]) {
+      if (picked[flower] >= 8) {
+        alert('max 8 of the same flower, try a different one!');
+        return;
+      }
+      picked[flower]++;
+    } else {
+      picked[flower]=1;
+      btn.classList.add('selected');
+      var card = btn.closest('.flower-card');
+      card.querySelector('.flower-controls').hidden =false;
+    }
+
+    btn.closest('.flower-card').querySelector('.flower-count').textContent = picked[flower];
     updatePreview();
   });
 });
 function shuffle(arr) {
-  for (var i = arr.length - 1; i> 0; i--) {
+  for (var i =arr.length - 1; i> 0; i--) {
     var r = Math.floor(Math.random() * (i+1));
-    var temp = arr[i];
+    var temp= arr[i];
     arr[i]=arr[r];
     arr[r]=temp;
   }
   return arr;
 }
-
-document.querySelectorAll('.plus-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var flower = btn.dataset.flower;
-    if (!picked[flower] || picked[flower] >= 4 || totalFlowers() >= MAX_FLOWERS) return;
-    picked[flower]++;
-    btn.closest('.flower-card').querySelector('.flower-count').textContent = picked[flower];
-    updatePreview();
-  });
-});
 
 document.querySelectorAll('.minus-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
