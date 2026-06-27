@@ -3,6 +3,11 @@ var to= params.get('to');
 var from=params.get('from');
 var msg= params.get('msg');
 var flowersParam = params.get('flowers');
+var posParam = params.get('pos');
+var savedPositions = {};
+if (posParam) {
+  try { savedPositions = JSON.parse(posParam); } catch(e) {}
+}
 
 var toEl=document.getElementById('view-to');
 var msgEl= document.getElementById('view-msg');
@@ -62,11 +67,12 @@ for (var j = 0; j< allFlowers.length; j++) {
     img.className = 'preview-flower';
     img.src= './' + allFlowers[j] + '.png.png';
     img.alt= allFlowers[j];
-    var spot = spots[j % spots.length];
-    var extra=Math.floor(j/spots.length) * 8;
-    
-    img.style.left= (spot.left +extra) + 'px';
-    img.style.top= (spot.top-extra) + 'px';
+    var key = allFlowers[j] + '-' + j;
+  var saved = savedPositions[key];
+  var spot = spots[j % spots.length];
+
+  img.style.left = (saved ? saved.left : spot.left) + 'px';
+  img.style.top = (saved ? saved.top : spot.top) + 'px';
     img.style.transform= 'rotate(' + spot.rot +'deg)';
     img.style.zIndex = j;
 

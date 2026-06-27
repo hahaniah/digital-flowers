@@ -376,3 +376,9 @@ body.view-page {
     color: var(--muted);
     font-style: italic;
 }
+.preview-flower.draggable {
+    position: absolute;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}

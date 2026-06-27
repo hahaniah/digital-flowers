@@ -1,50 +1,40 @@
 const picked = {};
+var positions= {};
+var MAX_FLOWERS= 8;
 
-var MAX_FLOWERS = 8; 
 function totalFlowers() {
-  var total = 0;
+  var total =0;
   for (var f in picked) total += picked[f];
   return total;
 }
-const previewEl = document.getElementById('preview');
-const emptyMsg = document.getElementById('empty-msg');
 
-
+const previewEl =document.getElementById('preview');
 
 document.querySelectorAll('.flower-opt').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var flower = btn.dataset.flower;
 
     if (totalFlowers() >= MAX_FLOWERS) {
-      alert('you can only add up to ' + MAX_FLOWERS + ' flowers in one bouquet 🌸');
+      alert('you can only add up to ' + MAX_FLOWERS + ' flowers in one bouquet ');
       return;
     }
     if (picked[flower]) {
-      if (picked[flower] >= 8) {
-        alert('max 8 of the same flower, try a different one!');
+      if (picked[flower] >= 4) {
+        alert('max 4 of the same flower!');
         return;
       }
       picked[flower]++;
     } else {
-      picked[flower]=1;
+      picked[flower] = 1;
       btn.classList.add('selected');
       var card = btn.closest('.flower-card');
-      card.querySelector('.flower-controls').hidden =false;
+      card.querySelector('.flower-controls').hidden = false;
     }
 
     btn.closest('.flower-card').querySelector('.flower-count').textContent = picked[flower];
     updatePreview();
   });
 });
-function shuffle(arr) {
-  for (var i =arr.length - 1; i> 0; i--) {
-    var r = Math.floor(Math.random() * (i+1));
-    var temp= arr[i];
-    arr[i]=arr[r];
-    arr[r]=temp;
-  }
-  return arr;
-}
 
 document.querySelectorAll('.minus-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
@@ -63,19 +53,69 @@ document.querySelectorAll('.minus-btn').forEach(function(btn) {
   });
 });
 
+function makeDraggable(el) {
+  var startX, startY, startLeft, startTop;
+
+  el.addEventListener('mousedown', function(e) {
+    e.preventDefault();
+    startX = e.clientX;
+    startY = e.clientY;
+    startLeft = parseInt(el.style.left) || 0;
+    startTop = parseInt(el.style.top) || 0;
+    el.style.cursor = 'grabbing';
+    el.style.zIndex = 999;
+
+    function onMove(e) {
+      var newLeft = startLeft + (e.clientX - startX);
+      var newTop = startTop + (e.clientY - startY);
+      el.style.left = newLeft + 'px';
+      el.style.top = newTop + 'px';
+      positions[el.dataset.key] = { left: newLeft, top: newTop };
+    }
+
+    function onUp() {
+      el.style.cursor = 'grab';
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    }
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+
+  el.addEventListener('touchstart', function(e) {
+    var touch = e.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    startLeft = parseInt(el.style.left) || 0;
+    startTop = parseInt(el.style.top) || 0;
+
+    function onMove(e) {
+      var t = e.touches[0];
+      var newLeft = startLeft + (t.clientX - startX);
+      var newTop = startTop + (t.clientY - startY);
+      el.style.left = newLeft + 'px';
+      el.style.top = newTop + 'px';
+      positions[el.dataset.key] = { left: newLeft, top: newTop };
+    }
+
+    function onEnd() {
+      el.removeEventListener('touchmove', onMove);
+      el.removeEventListener('touchend', onEnd);
+    }
+
+    el.addEventListener('touchmove', onMove);
+    el.addEventListener('touchend', onEnd);
+  });
+}
+
 function updatePreview() {
   var layer = document.getElementById('flowers-layer');
   if (layer) layer.remove();
 
   var total = 0;
   for (var f in picked) total += picked[f];
-
-  if (total === 0) {
-    emptyMsg.style.display = 'block';
-    return;
-  }
-
-  emptyMsg.style.display = 'none';
+  if (total === 0) return;
 
   var container = document.createElement('div');
   container.className = 'flowers-layer';
@@ -88,40 +128,38 @@ function updatePreview() {
     }
   }
 
-  // spots arranged like a bunch, not a line
-  var spots = [
-    { left: 88,  top: 25, rot: -6  },
-    { left: 118, top: 20, rot: 5   },
-    { left: 73,  top: 42, rot: -12 },
-    { left: 133, top: 42, rot: 10  },
-    { left: 101, top: 8,  rot: 2   },
-    { left: 58,  top: 70, rot: -16 },
-    { left: 145, top: 70, rot: 14  },
-    { left: 83,  top: 58, rot: -8  }
+  var defaultSpots = [
+    { left: 88,  top: 25 },
+    { left: 118, top: 20 },
+    { left: 73,  top: 42 },
+    { left: 133, top: 42 },
+    { left: 101, top: 8  },
+    { left: 58,  top: 70 },
+    { left: 145, top: 70 },
+    { left: 83,  top: 58 }
   ];
-  // god i hate js sooo fkin mucx
-  allFlowers = shuffle(allFlowers);
-  var count = allFlowers.length;
-  for (var j = 0; j < count; j++) {
+
+  for (var j = 0; j < allFlowers.length; j++) {
+    var flower = allFlowers[j];
+    var key = flower + '-' + j;
+    var pos = positions[key] || defaultSpots[j % defaultSpots.length];
+
     var img = document.createElement('img');
-    img.className = 'preview-flower';
-    img.src = './' + allFlowers[j] + '.png.png';
-    img.alt = allFlowers[j];
-
-    var spot = spots[j % spots.length];
-    var extra = Math.floor(j / spots.length) * 8;
-
-    img.style.left = (spot.left + extra) + 'px';
-    img.style.top = (spot.top - extra) + 'px';
-    img.style.transform = 'rotate(' + spot.rot + 'deg)';
+    img.className = 'preview-flower draggable';
+    img.src = './' + flower + '.png.png';
+    img.alt = flower;
+    img.dataset.key = key;
+    img.style.left = pos.left + 'px';
+    img.style.top = pos.top + 'px';
     img.style.zIndex = j;
+    img.style.cursor = 'grab';
 
+    makeDraggable(img);
     container.appendChild(img);
   }
 
   previewEl.appendChild(container);
 }
-
 
 document.getElementById('generate-btn').addEventListener('click', function() {
   var to = document.getElementById('to').value.trim();
@@ -139,7 +177,8 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     return;
   }
 
-  var params = new URLSearchParams({ to: to, from: from, msg: msg, flowers: flowers });
+  var posStr = JSON.stringify(positions);
+  var params = new URLSearchParams({ to: to, from: from, msg: msg, flowers: flowers, pos: posStr });
   var link = location.origin + '/digital-flowers/view.html?' + params.toString();
 
   var linkBox = document.getElementById('link-box');
