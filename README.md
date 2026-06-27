@@ -1,14 +1,18 @@
 Digital Flowers is a site that I built using HTML, CSS and JavaScript. I got the inspiration from https://digibouquet.vercel.app/, all credits to her! I wanted to build a simpler version of the site as my first project!
 
+
+<img width="1911" height="840" alt="image" src="https://github.com/user-attachments/assets/6a26d4c9-aecb-4c4c-a139-8a4786970820" />
+
 How it Works?
 
 1. Open the site, get greeted by the very cute hand drawn floating flowers heheh!
 2. Move on to the next page by clicking Build a Bouquet button.
 3. Click on the flowers to add them to your bouquet, the max number of flowers you can choose is 8!
-4. You can make combinations or just use one flower multiple times.
-5. Scroll down and write a note for the person you are sending flowers to<3
-6. Copy the link and send the link to your person! When they open it they'll see the flowers in a view page with your note!
-7. That's pretty much it! Hope you like it.
+4. Drag the flowers to wherever you want to place them!
+5. You can make combinations or just use one flower multiple times.
+6. Scroll down and write a note for the person you are sending flowers to<3
+7. Copy the link and send the link to your person! When they open it they'll see the flowers in a view page with your note!
+8. That's pretty much it! Hope you like it.
 
 I wana add more flower variety in the future as well, stay tuned for that!
 
