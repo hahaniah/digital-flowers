@@ -342,7 +342,7 @@ body.view-page {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 2rem 1 rem;
+    padding: 2rem 1rem;
     gap: 2rem;
 }
 .view-card {
