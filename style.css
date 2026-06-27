@@ -353,7 +353,9 @@ body.view-page {
     width: 100%;
     text-align: center;
     box-shadow: 0 12px 40px rgba(191, 91, 109, 0.12);
+    margin: auto;
 }
+
 
 .view-to {
     font-family: 'Lora', serif;
