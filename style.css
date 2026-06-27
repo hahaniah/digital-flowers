@@ -82,18 +82,20 @@ h1 em {
     pointer-events: none;
     z-index: 0;
 }
-.bg-flowers span {
+.bg-flowers img {
     position: absolute;
     bottom: -4rem;
     left: var(--x);
-    font-size: var(--size);
+    width: var(--size);
+    height: var(--size);
+    object-fit: contain;
     opacity: 0;
     animation: drift 10s var(--delay) infinite ease-in-out;
 }
 @keyframes drift {
     0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
-  8%   { opacity: 0.6; }
-  92%  { opacity: 0.4; }
+  8%   { opacity: 1; }
+  92%  { opacity: 0.85; }
   100% { transform: translateY(-115vh) rotate(20deg); opacity: 0; }
 }
 footer {
@@ -303,6 +305,7 @@ opacity 1;
   text-align: center;
   width: 100%;
   display: block;
+  position: absolute;
   top: 1rem;
   left: 0;
   z-index: 2;
