@@ -84,13 +84,13 @@ h1 em {
 }
 .bg-flowers img {
     position: absolute;
-    bottom: -4rem;
+    bottom: 20vh;
     left: var(--x);
     width: var(--size);
     height: var(--size);
     object-fit: contain;
     opacity: 0;
-    animation: drift 10s var(--delay) infinite ease-in-out;
+    animation: drift 6s var(--delay) infinite ease-in-out;
 }
 @keyframes drift {
     0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
